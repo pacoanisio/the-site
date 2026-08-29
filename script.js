@@ -1,17 +1,80 @@
-document.addEventListener("DOMContentLoaded", () => {
-
-    /* =========================
-       ESTADO DO JOGO
-    ========================== */
-
-    let rodadaAtual = 0;
-    let acertos = 0;
-    let erros = 0;
+document.addEventListener("DOMContentLoaded", function () {
 
 
-    /* =========================
+    /* ==================================================
+       DADOS DO JOGO
+    ================================================== */
+
+    const rodadas = [
+
+        {
+            musicas: [
+
+                {
+                    nome: "All I Need",
+                    artista: "Radiohead",
+                    correta: true,
+                    link: "https://music.youtube.com/watch?v=FM7ALFsOH4g&si=nT5MnfqFW2ka_bDR"
+                },
+
+                {
+                    nome: "Jigsaw Falling Into Place",
+                    artista: "Radiohead",
+                    correta: false,
+                    link: "https://music.youtube.com/watch?v=CvjRlYpXS5U&si=tR7fobczXlczoqBu"
+                }
+
+            ]
+        },
+
+
+        {
+            musicas: [
+
+                {
+                    nome: "Echoes",
+                    artista: "Incubus",
+                    correta: true,
+                    link: "https://music.youtube.com/watch?v=gmJQvCS1T3c&si=YEQz55RtTF9wdltC"
+                },
+
+                {
+                    nome: "Stellar",
+                    artista: "Incubus",
+                    correta: false,
+                    link: "https://music.youtube.com/watch?v=_qQdnilFIw8&si=CqCWRVPye1I7nzor"
+                }
+
+            ]
+        },
+
+
+        {
+            musicas: [
+
+                {
+                    nome: "I Could Die For You",
+                    artista: "Red Hot Chili Peppers",
+                    correta: false,
+                    link: "https://music.youtube.com/watch?v=5hEjkH2DF5c&si=mp4iSPvWKxJCj8v6"
+                },
+
+                {
+                    nome: "My Kind of Woman",
+                    artista: "Mac DeMarco",
+                    correta: true,
+                    link: "https://music.youtube.com/watch?v=88mooKbT61A&si=ovStWFeVHxaSyiMR"
+                }
+
+            ]
+        }
+
+    ];
+
+
+    /* ==================================================
        IMAGENS
-    ========================== */
+    ================================================== */
 
     const imagens = {
 
@@ -33,111 +96,46 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
 
-    /* =========================
-       MÚSICAS
-    ========================== */
+    /* ==================================================
+       PLACAR
+    ================================================== */
 
-    const rodadas = [
-
-        {
-
-            opcoes: [
-
-                {
-                    nome: "All I Need",
-                    artista: "Radiohead",
-                    correta: true,
-                    link: "https://music.youtube.com/watch?v=FM7ALFsOH4g&si=nT5MnfqFW2ka_bDR"
-                },
-
-                {
-                    nome: "Jigsaw Falling Into Place",
-                    artista: "Radiohead",
-                    correta: false,
-                    link: "https://music.youtube.com/watch?v=CvjRlYpXS5U&si=tR7fobczXlczoqBu"
-                }
-
-            ]
-
-        },
+    let acertos = 0;
+    let erros = 0;
 
 
-        {
-
-            opcoes: [
-
-                {
-                    nome: "Echoes",
-                    artista: "Incubus",
-                    correta: true,
-                    link: "https://music.youtube.com/watch?v=gmJQvCS1T3c&si=YEQz55RtTF9wdltC"
-                },
-
-                {
-                    nome: "Stellar",
-                    artista: "Incubus",
-                    correta: false,
-                    link: "https://music.youtube.com/watch?v=_qQdnilFIw8&si=CqCWRVPye1I7nzor"
-                }
-
-            ]
-
-        },
-
-
-        {
-
-            opcoes: [
-
-                {
-                    nome: "I Could Die For You",
-                    artista: "Red Hot Chili Peppers",
-                    correta: false,
-                    link: "https://music.youtube.com/watch?v=5hEjkH2DF5c&si=mp4iSPvWKxJCj8v6"
-                },
-
-                {
-                    nome: "My Kind of Woman",
-                    artista: "Mac DeMarco",
-                    correta: true,
-                    link: "https://music.youtube.com/watch?v=88mooKbT61A&si=ovStWFeVHxaSyiMR"
-                }
-
-            ]
-
-        }
-
-    ];
-
-
-    /* =========================
+    /* ==================================================
        TELAS
-    ========================== */
+    ================================================== */
 
-    const telas = {
+    const inicio =
+        document.getElementById("inicio");
 
-        inicio: document.getElementById("inicio"),
+    const regras =
+        document.getElementById("regras");
 
-        regras: document.getElementById("regras"),
+    const rodada1 =
+        document.getElementById("rodada1");
 
-        rodada1: document.getElementById("rodada1"),
+    const rodada2 =
+        document.getElementById("rodada2");
 
-        rodada2: document.getElementById("rodada2"),
+    const rodada3 =
+        document.getElementById("rodada3");
 
-        rodada3: document.getElementById("rodada3"),
+    const final1 =
+        document.getElementById("final1");
 
-        final1: document.getElementById("final1"),
+    const final2 =
+        document.getElementById("final2");
 
-        final2: document.getElementById("final2"),
-
-        final: document.getElementById("final")
-
-    };
+    const final =
+        document.getElementById("final");
 
 
-    /* =========================
+    /* ==================================================
        BOTÕES PRINCIPAIS
-    ========================== */
+    ================================================== */
 
     const btnSimbora =
         document.getElementById("btnSimbora");
@@ -146,61 +144,163 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("btnComecar");
 
 
-    /* =========================
-       MOSTRAR TELA
-    ========================== */
+    const btnProximo1 =
+        document.getElementById("btnProximo1");
+
+    const btnProximo2 =
+        document.getElementById("btnProximo2");
+
+    const btnProximo3 =
+        document.getElementById("btnProximo3");
+
+
+    /* ==================================================
+       FUNÇÃO PARA MOSTRAR UMA TELA
+    ================================================== */
 
     function mostrarTela(tela) {
 
-        Object.values(telas).forEach(secao => {
+        const telas = [
+            inicio,
+            regras,
+            rodada1,
+            rodada2,
+            rodada3,
+            final1,
+            final2,
+            final
+        ];
 
-            secao.classList.add("escondido");
+
+        telas.forEach(function (elemento) {
+
+            if (elemento) {
+
+                elemento.classList.add("escondido");
+
+            }
 
         });
 
-        tela.classList.remove("escondido");
+
+        if (tela) {
+
+            tela.classList.remove("escondido");
+
+        }
 
     }
 
 
-    /* =========================
+    /* ==================================================
        ATUALIZAR PLACAR
-    ========================== */
+    ================================================== */
 
     function atualizarPlacar() {
 
-        document.getElementById("placarAcertos").textContent =
-            acertos;
+        const placarAcertos =
+            document.getElementById("placarAcertos");
 
-        document.getElementById("placarErros").textContent =
-            erros;
+        const placarErros =
+            document.getElementById("placarErros");
 
-        document.getElementById("resultadoAcertos").textContent =
-            acertos;
+        const resultadoAcertos =
+            document.getElementById("resultadoAcertos");
 
-        document.getElementById("resultadoErros").textContent =
-            erros;
+        const resultadoErros =
+            document.getElementById("resultadoErros");
+
+
+        if (placarAcertos) {
+
+            placarAcertos.textContent = acertos;
+
+        }
+
+
+        if (placarErros) {
+
+            placarErros.textContent = erros;
+
+        }
+
+
+        if (resultadoAcertos) {
+
+            resultadoAcertos.textContent = acertos;
+
+        }
+
+
+        if (resultadoErros) {
+
+            resultadoErros.textContent = erros;
+
+        }
 
     }
 
 
-    /* =========================
-       CRIAR OPÇÕES
-    ========================== */
+    /* ==================================================
+       CRIAR AS DUAS OPÇÕES DE UMA RODADA
+    ================================================== */
 
-    function criarRodada(numero) {
+    function criarRodada(numeroRodada) {
 
-        const rodada = rodadas[numero];
+        const rodada =
+            rodadas[numeroRodada];
+
 
         const container =
             document.getElementById(
-                `opcoesRodada${numero + 1}`
+                "opcoesRodada" + (numeroRodada + 1)
             );
+
+
+        if (!container) {
+
+            return;
+
+        }
+
 
         container.innerHTML = "";
 
 
-        rodada.opcoes.forEach((musica, indice) => {
+        /* Esconde o resultado antigo */
+
+        const resultado =
+            document.getElementById(
+                "resultado" + (numeroRodada + 1)
+            );
+
+
+        if (resultado) {
+
+            resultado.innerHTML = "";
+
+        }
+
+
+        /* Esconde o botão Próximo */
+
+        const botaoProximo =
+            document.getElementById(
+                "btnProximo" + (numeroRodada + 1)
+            );
+
+
+        if (botaoProximo) {
+
+            botaoProximo.classList.add("escondido");
+
+        }
+
+
+        /* Cria as músicas */
+
+        rodada.musicas.forEach(function (musica) {
+
 
             const bloco =
                 document.createElement("div");
@@ -226,41 +326,53 @@ document.addEventListener("DOMContentLoaded", () => {
                 musica.artista;
 
 
+            /* LINK PARA OUVIR */
+
             const ouvir =
                 document.createElement("a");
 
             ouvir.className = "linkMusica";
 
-            ouvir.href = musica.link;
+            ouvir.href =
+                musica.link;
 
-            ouvir.target = "_blank";
+            ouvir.target =
+                "_blank";
 
-            ouvir.rel = "noopener noreferrer";
+            ouvir.rel =
+                "noopener noreferrer";
 
             ouvir.textContent =
                 "▶ Ouvir música";
 
 
+            /* BOTÃO ESCOLHER */
+
             const escolher =
                 document.createElement("button");
 
-            escolher.className = "btnEscolher";
+            escolher.type =
+                "button";
 
-            escolher.type = "button";
+            escolher.className =
+                "btnEscolher";
 
             escolher.textContent =
                 "ESCOLHER";
 
 
-            escolher.addEventListener("click", () => {
+            escolher.addEventListener(
+                "click",
+                function () {
 
-                responder(
-                    musica,
-                    numero,
-                    container
-                );
+                    responder(
+                        musica,
+                        numeroRodada,
+                        container
+                    );
 
-            });
+                }
+            );
 
 
             bloco.appendChild(nome);
@@ -271,6 +383,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             bloco.appendChild(escolher);
 
+
             container.appendChild(bloco);
 
         });
@@ -278,25 +391,33 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* =========================
+    /* ==================================================
        RESPONDER
-    ========================== */
+    ================================================== */
 
     function responder(
         musica,
-        numero,
+        numeroRodada,
         container
     ) {
 
-        const botoes =
-            container.querySelectorAll("button");
 
-        botoes.forEach(botao => {
+        /* Impede uma segunda escolha */
+
+        const botoes =
+            container.querySelectorAll(
+                ".btnEscolher"
+            );
+
+
+        botoes.forEach(function (botao) {
 
             botao.disabled = true;
 
         });
 
+
+        /* Atualiza o placar */
 
         if (musica.correta) {
 
@@ -312,60 +433,100 @@ document.addEventListener("DOMContentLoaded", () => {
         atualizarPlacar();
 
 
+        /* Mostra a imagem */
+
         mostrarResultado(
             musica.correta,
-            numero
+            numeroRodada
         );
 
 
-        setTimeout(() => {
+        /* Mostra o botão PRÓXIMO */
 
-            proximaRodada(numero);
+        const botaoProximo =
+            document.getElementById(
+                "btnProximo" + (numeroRodada + 1)
+            );
 
-        }, 3000);
+
+        if (botaoProximo) {
+
+            botaoProximo.classList.remove(
+                "escondido"
+            );
+
+        }
 
     }
 
 
-    /* =========================
-       MOSTRAR RESULTADO
-    ========================== */
+    /* ==================================================
+       MOSTRAR IMAGEM DO RESULTADO
+    ================================================== */
 
     function mostrarResultado(
         acertou,
-        numero
+        numeroRodada
     ) {
+
 
         const resultado =
             document.getElementById(
-                `resultado${numero + 1}`
+                "resultado" + (numeroRodada + 1)
             );
 
 
-        let imagem;
+        if (!resultado) {
 
-
-        if (numero === 0) {
-
-            imagem =
-                acertou
-                    ? imagens.rodada1Acerto
-                    : imagens.rodada1Erro;
+            return;
 
         }
 
 
-        if (numero === 1) {
+        let imagem = "";
 
-            imagem =
-                acertou
-                    ? imagens.rodada2Acerto
-                    : imagens.rodada2Erro;
+
+        /* RODADA 1 */
+
+        if (numeroRodada === 0) {
+
+            if (acertou) {
+
+                imagem =
+                    imagens.rodada1Acerto;
+
+            } else {
+
+                imagem =
+                    imagens.rodada1Erro;
+
+            }
 
         }
 
 
-        if (numero === 2) {
+        /* RODADA 2 */
+
+        if (numeroRodada === 1) {
+
+            if (acertou) {
+
+                imagem =
+                    imagens.rodada2Acerto;
+
+            } else {
+
+                imagem =
+                    imagens.rodada2Erro;
+
+            }
+
+        }
+
+
+        /* RODADA 3 */
+
+        if (numeroRodada === 2) {
 
             imagem =
                 imagens.rodada3;
@@ -384,84 +545,105 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* =========================
-       PRÓXIMA RODADA
-    ========================== */
+    /* ==================================================
+       BOTÃO SIMBORA
+    ================================================== */
 
-    function proximaRodada(numero) {
+    btnSimbora.addEventListener(
+        "click",
+        function () {
 
-        if (numero === 0) {
-
-            rodadaAtual = 1;
-
-            mostrarTela(telas.rodada2);
-
-            return;
+            mostrarTela(regras);
 
         }
+    );
 
 
-        if (numero === 1) {
+    /* ==================================================
+       BOTÃO BORA
+    ================================================== */
 
-            rodadaAtual = 2;
+    btnComecar.addEventListener(
+        "click",
+        function () {
 
-            mostrarTela(telas.rodada3);
+            criarRodada(0);
 
-            return;
-
-        }
-
-
-        if (numero === 2) {
-
-            mostrarTela(telas.final1);
-
-
-            setTimeout(() => {
-
-                mostrarTela(telas.final2);
-
-            }, 3000);
-
-
-            setTimeout(() => {
-
-                mostrarTela(telas.final);
-
-            }, 6000);
+            mostrarTela(rodada1);
 
         }
-
-    }
-
-
-    /* =========================
-       SIMBORA
-    ========================== */
-
-    btnSimbora.addEventListener("click", () => {
-
-        mostrarTela(telas.regras);
-
-    });
+    );
 
 
-    /* =========================
-       COMEÇAR
-    ========================== */
+    /* ==================================================
+       PRÓXIMO DA RODADA 1
+    ================================================== */
 
-    btnComecar.addEventListener("click", () => {
+    btnProximo1.addEventListener(
+        "click",
+        function () {
 
-        criarRodada(0);
+            criarRodada(1);
 
-        mostrarTela(telas.rodada1);
+            mostrarTela(rodada2);
 
-    });
+        }
+    );
 
 
-    /* =========================
+    /* ==================================================
+       PRÓXIMO DA RODADA 2
+    ================================================== */
+
+    btnProximo2.addEventListener(
+        "click",
+        function () {
+
+            criarRodada(2);
+
+            mostrarTela(rodada3);
+
+        }
+    );
+
+
+    /* ==================================================
+       PRÓXIMO DA RODADA 3
+    ================================================== */
+
+    btnProximo3.addEventListener(
+        "click",
+        function () {
+
+            mostrarTela(final1);
+
+
+            setTimeout(
+                function () {
+
+                    mostrarTela(final2);
+
+                },
+                3000
+            );
+
+
+            setTimeout(
+                function () {
+
+                    mostrarTela(final);
+
+                },
+                6000
+            );
+
+        }
+    );
+
+
+    /* ==================================================
        INICIALIZAÇÃO
-    ========================== */
+    ================================================== */
 
     atualizarPlacar();
 
