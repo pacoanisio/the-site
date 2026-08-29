@@ -1,0 +1,364 @@
+/* =========================
+   RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================
+   CORPO
+========================= */
+
+body {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #000;
+
+    color: #fff;
+
+    font-family: "Playfair Display", serif;
+}
+
+
+/* =========================
+   JOGO
+========================= */
+
+.jogo {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* =========================
+   TELAS
+========================= */
+
+.tela {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 30px 20px;
+}
+
+
+.escondido {
+    display: none;
+}
+
+
+/* =========================
+   CONTEÚDO
+========================= */
+
+.conteudo {
+    width: 100%;
+    max-width: 650px;
+
+    text-align: center;
+}
+
+
+/* =========================
+   TÍTULOS
+========================= */
+
+h1 {
+    font-size: clamp(2rem, 7vw, 4rem);
+
+    line-height: 1.1;
+
+    margin-bottom: 25px;
+}
+
+
+h2 {
+    font-size: clamp(1.8rem, 6vw, 3rem);
+
+    margin-bottom: 30px;
+}
+
+
+.subtitulo {
+    font-size: 1.3rem;
+
+    margin-bottom: 25px;
+}
+
+
+.descricao {
+    font-size: 1.05rem;
+
+    line-height: 1.8;
+
+    margin-bottom: 40px;
+}
+
+
+.destaque {
+    font-size: 1.2rem;
+
+    margin-top: 30px;
+}
+
+
+/* =========================
+   BOTÕES
+========================= */
+
+.botao {
+    border: 1px solid #fff;
+
+    background: transparent;
+
+    color: #fff;
+
+    padding: 15px 35px;
+
+    font-family: inherit;
+
+    font-size: 1rem;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.botao:hover {
+    background: #fff;
+
+    color: #000;
+}
+
+
+.botao:disabled {
+    opacity: 0.4;
+
+    cursor: not-allowed;
+}
+
+
+/* =========================
+   CABEÇALHO RODADA
+========================= */
+
+.cabecalhoRodada {
+    margin-bottom: 25px;
+
+    font-size: 0.85rem;
+
+    letter-spacing: 4px;
+}
+
+
+/* =========================
+   OPÇÕES
+========================= */
+
+.opcoes {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+
+    margin-top: 30px;
+}
+
+
+/* =========================
+   CARTÃO DA MÚSICA
+========================= */
+
+.opcaoMusica {
+    width: 100%;
+
+    border: 1px solid #444;
+
+    background: #080808;
+
+    padding: 22px;
+
+    text-align: left;
+
+    transition: 0.2s;
+}
+
+
+.opcaoMusica:hover {
+    border-color: #fff;
+}
+
+
+.nomeMusica {
+    display: block;
+
+    color: #fff;
+
+    font-size: 1.25rem;
+
+    margin-bottom: 5px;
+}
+
+
+.artista {
+    display: block;
+
+    color: #aaa;
+
+    font-size: 0.95rem;
+
+    margin-bottom: 15px;
+}
+
+
+/* =========================
+   BOTÃO ESCOLHA
+========================= */
+
+.btnEscolher {
+    width: 100%;
+
+    padding: 13px;
+
+    border: 1px solid #fff;
+
+    background: #fff;
+
+    color: #000;
+
+    font-family: inherit;
+
+    cursor: pointer;
+
+    font-size: 0.95rem;
+}
+
+
+.btnEscolher:hover {
+    background: transparent;
+
+    color: #fff;
+}
+
+
+/* =========================
+   LINK DA MÚSICA
+========================= */
+
+.linkMusica {
+    display: inline-block;
+
+    margin-bottom: 15px;
+
+    color: #aaa;
+
+    font-size: 0.85rem;
+
+    text-decoration: underline;
+}
+
+
+.linkMusica:hover {
+    color: #fff;
+}
+
+
+/* =========================
+   RESULTADO
+========================= */
+
+.resultado {
+    margin-top: 30px;
+}
+
+
+.resultado img {
+    width: 100%;
+
+    max-width: 500px;
+
+    height: auto;
+
+    display: block;
+
+    margin: 0 auto;
+}
+
+
+/* =========================
+   PLACAR
+========================= */
+
+.placar {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 70px;
+
+    margin-top: 40px;
+}
+
+
+.placar div {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+
+.numero {
+    font-size: 3rem;
+}
+
+
+.placarFinal {
+    margin-top: 30px;
+
+    font-size: 1.2rem;
+
+    line-height: 2;
+}
+
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media (max-width: 600px) {
+
+    .tela {
+        padding: 25px 18px;
+    }
+
+
+    .opcaoMusica {
+        padding: 18px;
+    }
+
+
+    .placar {
+        gap: 45px;
+    }
+
+}
