@@ -2,10 +2,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* ==================================================
-       DADOS DO JOGO
+       MÚSICAS
     ================================================== */
 
     const rodadas = [
+
+        /* =========================
+           RODADA 1
+        ========================= */
 
         {
             musicas: [
@@ -28,6 +32,10 @@ document.addEventListener("DOMContentLoaded", function () {
         },
 
 
+        /* =========================
+           RODADA 2
+        ========================= */
+
         {
             musicas: [
 
@@ -48,6 +56,10 @@ document.addEventListener("DOMContentLoaded", function () {
             ]
         },
 
+
+        /* =========================
+           RODADA 3
+        ========================= */
 
         {
             musicas: [
@@ -101,6 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
     ================================================== */
 
     let acertos = 0;
+
     let erros = 0;
 
 
@@ -134,7 +147,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* ==================================================
-       BOTÕES PRINCIPAIS
+       BOTÕES
     ================================================== */
 
     const btnSimbora =
@@ -142,7 +155,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const btnComecar =
         document.getElementById("btnComecar");
-
 
     const btnProximo1 =
         document.getElementById("btnProximo1");
@@ -155,12 +167,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* ==================================================
-       FUNÇÃO PARA MOSTRAR UMA TELA
+       MOSTRAR TELA
     ================================================== */
 
     function mostrarTela(tela) {
 
         const telas = [
+
             inicio,
             regras,
             rodada1,
@@ -169,6 +182,7 @@ document.addEventListener("DOMContentLoaded", function () {
             final1,
             final2,
             final
+
         ];
 
 
@@ -213,28 +227,32 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (placarAcertos) {
 
-            placarAcertos.textContent = acertos;
+            placarAcertos.textContent =
+                acertos;
 
         }
 
 
         if (placarErros) {
 
-            placarErros.textContent = erros;
+            placarErros.textContent =
+                erros;
 
         }
 
 
         if (resultadoAcertos) {
 
-            resultadoAcertos.textContent = acertos;
+            resultadoAcertos.textContent =
+                acertos;
 
         }
 
 
         if (resultadoErros) {
 
-            resultadoErros.textContent = erros;
+            resultadoErros.textContent =
+                erros;
 
         }
 
@@ -242,7 +260,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* ==================================================
-       CRIAR AS DUAS OPÇÕES DE UMA RODADA
+       CRIAR RODADA
     ================================================== */
 
     function criarRodada(numeroRodada) {
@@ -251,9 +269,13 @@ document.addEventListener("DOMContentLoaded", function () {
             rodadas[numeroRodada];
 
 
+        const numeroTela =
+            numeroRodada + 1;
+
+
         const container =
             document.getElementById(
-                "opcoesRodada" + (numeroRodada + 1)
+                "opcoesRodada" + numeroTela
             );
 
 
@@ -267,11 +289,11 @@ document.addEventListener("DOMContentLoaded", function () {
         container.innerHTML = "";
 
 
-        /* Esconde o resultado antigo */
+        /* Limpa resultado anterior */
 
         const resultado =
             document.getElementById(
-                "resultado" + (numeroRodada + 1)
+                "resultado" + numeroTela
             );
 
 
@@ -282,22 +304,24 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        /* Esconde o botão Próximo */
+        /* Esconde o PRÓXIMO */
 
         const botaoProximo =
             document.getElementById(
-                "btnProximo" + (numeroRodada + 1)
+                "btnProximo" + numeroTela
             );
 
 
         if (botaoProximo) {
 
-            botaoProximo.classList.add("escondido");
+            botaoProximo.classList.add(
+                "escondido"
+            );
 
         }
 
 
-        /* Cria as músicas */
+        /* Cria as duas músicas */
 
         rodada.musicas.forEach(function (musica) {
 
@@ -305,33 +329,41 @@ document.addEventListener("DOMContentLoaded", function () {
             const bloco =
                 document.createElement("div");
 
-            bloco.className = "opcaoMusica";
+            bloco.className =
+                "opcaoMusica";
 
+
+            /* NOME */
 
             const nome =
                 document.createElement("span");
 
-            nome.className = "nomeMusica";
+            nome.className =
+                "nomeMusica";
 
             nome.textContent =
                 musica.nome;
 
 
+            /* ARTISTA */
+
             const artista =
                 document.createElement("span");
 
-            artista.className = "artista";
+            artista.className =
+                "artista";
 
             artista.textContent =
                 musica.artista;
 
 
-            /* LINK PARA OUVIR */
+            /* LINK */
 
             const ouvir =
                 document.createElement("a");
 
-            ouvir.className = "linkMusica";
+            ouvir.className =
+                "linkMusica";
 
             ouvir.href =
                 musica.link;
@@ -346,7 +378,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "▶ Ouvir música";
 
 
-            /* BOTÃO ESCOLHER */
+            /* ESCOLHER */
 
             const escolher =
                 document.createElement("button");
@@ -402,7 +434,7 @@ document.addEventListener("DOMContentLoaded", function () {
     ) {
 
 
-        /* Impede uma segunda escolha */
+        /* Impede nova escolha */
 
         const botoes =
             container.querySelectorAll(
@@ -417,7 +449,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
 
-        /* Atualiza o placar */
+        /* Atualiza placar */
 
         if (musica.correta) {
 
@@ -433,7 +465,7 @@ document.addEventListener("DOMContentLoaded", function () {
         atualizarPlacar();
 
 
-        /* Mostra a imagem */
+        /* Mostra resultado */
 
         mostrarResultado(
             musica.correta,
@@ -441,7 +473,7 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
 
-        /* Mostra o botão PRÓXIMO */
+        /* Mostra PRÓXIMO */
 
         const botaoProximo =
             document.getElementById(
@@ -461,7 +493,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* ==================================================
-       MOSTRAR IMAGEM DO RESULTADO
+       MOSTRAR RESULTADO
     ================================================== */
 
     function mostrarResultado(
@@ -490,17 +522,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (numeroRodada === 0) {
 
-            if (acertou) {
-
-                imagem =
-                    imagens.rodada1Acerto;
-
-            } else {
-
-                imagem =
-                    imagens.rodada1Erro;
-
-            }
+            imagem =
+                acertou
+                    ? imagens.rodada1Acerto
+                    : imagens.rodada1Erro;
 
         }
 
@@ -509,17 +534,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (numeroRodada === 1) {
 
-            if (acertou) {
-
-                imagem =
-                    imagens.rodada2Acerto;
-
-            } else {
-
-                imagem =
-                    imagens.rodada2Erro;
-
-            }
+            imagem =
+                acertou
+                    ? imagens.rodada2Acerto
+                    : imagens.rodada2Erro;
 
         }
 
@@ -546,7 +564,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* ==================================================
-       BOTÃO SIMBORA
+       SIMBORA
     ================================================== */
 
     btnSimbora.addEventListener(
@@ -560,7 +578,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* ==================================================
-       BOTÃO BORA
+       BORA
     ================================================== */
 
     btnComecar.addEventListener(
@@ -576,7 +594,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* ==================================================
-       PRÓXIMO DA RODADA 1
+       PRÓXIMO - RODADA 1
     ================================================== */
 
     btnProximo1.addEventListener(
@@ -592,7 +610,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* ==================================================
-       PRÓXIMO DA RODADA 2
+       PRÓXIMO - RODADA 2
     ================================================== */
 
     btnProximo2.addEventListener(
@@ -608,7 +626,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* ==================================================
-       PRÓXIMO DA RODADA 3
+       PRÓXIMO - RODADA 3
     ================================================== */
 
     btnProximo3.addEventListener(
