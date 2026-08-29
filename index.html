@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Vamos jogar um joguinho 🎵</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <main class="jogo">
+
+        <!-- =========================
+             TELA INICIAL
+        ========================== -->
+
+        <section id="inicio" class="tela">
+
+            <div class="conteudo">
+
+                <h1>Vamos jogar um joguinho 🎵</h1>
+
+                <p class="subtitulo">
+                    Tenho algumas músicas para você.
+                </p>
+
+                <p class="descricao">
+                    Serão 3 rodadas.<br>
+                    Em cada rodada, duas músicas.
+                </p>
+
+                <button class="botao" id="btnSimbora">
+                    SIMBORA
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             REGRAS
+        ========================== -->
+
+        <section id="regras" class="tela escondido">
+
+            <div class="conteudo">
+
+                <h2>Antes de começar...</h2>
+
+                <p>
+                    São 3 rodadas.
+                </p>
+
+                <p>
+                    Em cada rodada, você vai escolher
+                    entre duas músicas.
+                </p>
+
+                <p>
+                    Uma é verdadeira.<br>
+                    A outra é falsa.
+                </p>
+
+                <p class="destaque">
+                    Escolha com cuidado.
+                </p>
+
+                <button class="botao" id="btnComecar">
+                    BORA!
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             RODADA 1
+        ========================== -->
+
+        <section id="rodada1" class="tela escondido">
+
+            <div class="conteudo">
+
+                <div class="cabecalhoRodada">
+                    <span>RODADA 1</span>
+                </div>
+
+                <h2>Escolha uma.</h2>
+
+                <div id="opcoesRodada1" class="opcoes"></div>
+
+                <div id="resultado1" class="resultado"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             RODADA 2
+        ========================== -->
+
+        <section id="rodada2" class="tela escondido">
+
+            <div class="conteudo">
+
+                <div class="cabecalhoRodada">
+                    <span>RODADA 2</span>
+                </div>
+
+                <h2>Escolha uma.</h2>
+
+                <div id="opcoesRodada2" class="opcoes"></div>
+
+                <div id="resultado2" class="resultado"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             RODADA 3
+        ========================== -->
+
+        <section id="rodada3" class="tela escondido">
+
+            <div class="conteudo">
+
+                <div class="cabecalhoRodada">
+                    <span>RODADA 3</span>
+                </div>
+
+                <h2>Última rodada.</h2>
+
+                <div id="opcoesRodada3" class="opcoes"></div>
+
+                <div id="resultado3" class="resultado"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             FINAL 1
+        ========================== -->
+
+        <section id="final1" class="tela escondido">
+
+            <div class="conteudo">
+
+                <h2>Fim das rodadas.</h2>
+
+                <p>
+                    Agora vamos ver como você se saiu...
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             FINAL 2
+        ========================== -->
+
+        <section id="final2" class="tela escondido">
+
+            <div class="conteudo">
+
+                <h2>Resultado</h2>
+
+                <div class="placar">
+
+                    <div>
+                        <span class="numero" id="placarAcertos">0</span>
+                        <span>acertos</span>
+                    </div>
+
+                    <div>
+                        <span class="numero" id="placarErros">0</span>
+                        <span>erros</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             FINAL
+        ========================== -->
+
+        <section id="final" class="tela escondido">
+
+            <div class="conteudo">
+
+                <h2>🎵</h2>
+
+                <p class="mensagemFinal">
+                    Você chegou até o final.
+                </p>
+
+                <div class="placarFinal">
+
+                    <p>
+                        Acertos:
+                        <strong id="resultadoAcertos">0</strong>
+                    </p>
+
+                    <p>
+                        Erros:
+                        <strong id="resultadoErros">0</strong>
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
